@@ -14,6 +14,5 @@ public class TextRecognitionRequest implements Serializable {
     private Integer id;
     private String requestId;
     private String imageLink;
-    //TODO: додати дату
 
 }

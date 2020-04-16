@@ -3,11 +3,12 @@ package com.epam.pdp.recognitionservice.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "failed_results")
 @Data
-public class TextRecognitionFailedResult {
+public class TextRecognitionFailedResult  implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
