@@ -54,6 +54,9 @@ public class TextRecognitionService implements RecognitionService<TextRecognitio
         if(!Ping.pingHost(googleApiHost, googleApiPort)) {
             log.debug("Ping result of the vision.googleapis.com:443 - "+false);
             template.convertAndSend(directExchange.getName(), "textrecognition", request);
+            //*********************
+            spendTime(5);
+            //**********************
             return;
         }
         else {
@@ -61,13 +64,7 @@ public class TextRecognitionService implements RecognitionService<TextRecognitio
         }
 
         //*********************
-        //Емулятор корисної роботи
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage());
-            e.printStackTrace();
-        }
+        spendTime(5);
         //**********************
 
         String recognizedText = null;
@@ -83,5 +80,18 @@ public class TextRecognitionService implements RecognitionService<TextRecognitio
         log.info("Recognized Text: {}", recognizedText);
         TextRecognitionResult textRecognitionResult = new TextRecognitionResult(request.getRequestId(),recognizedText);
         recognitionRepository.save(textRecognitionResult);
+    }
+
+    /**
+     * Emulator useful work.
+     * @param seconds to spend
+     */
+    private void spendTime(int seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
