@@ -1,6 +1,5 @@
 package com.epam.pdp.recognitionservice.service.google;
 
-import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 
 import java.io.IOException;

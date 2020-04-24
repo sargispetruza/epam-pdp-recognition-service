@@ -12,13 +12,13 @@ public class TextRecognitionFailedResult  implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-    private String requestId;
+    private Integer requestId;
     private String failReason;
 
     public TextRecognitionFailedResult() {
     }
 
-    public TextRecognitionFailedResult(String requestId, String failReason) {
+    public TextRecognitionFailedResult(Integer requestId, String failReason) {
         this.requestId = requestId;
         this.failReason = failReason;
     }

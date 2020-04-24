@@ -1,4 +1,4 @@
-package com.epam.pdp.recognitionservice.service;
+package com.epam.pdp.recognitionservice.service.report;
 
 import com.epam.pdp.recognitionservice.domain.entity.TextRecognitionFailedResult;
 import com.epam.pdp.recognitionservice.domain.entity.TextRecognitionResult;
@@ -19,13 +19,16 @@ public class TextReportService implements ReportService<TextRecognitionResult>{
         this.recognitionFailedRepository = recognitionFailedRepository;
     }
 
-    public TextRecognitionResult createReport(String requestId) throws ThereIsNoSuchReportException, RecognitionException {
+    public TextRecognitionResult createReport(Integer requestId) throws ThereIsNoSuchReportException, RecognitionException {
         TextRecognitionResult result = recognitionRepository.getByRequestId(requestId);
         if(result==null){
             TextRecognitionFailedResult failedResult = recognitionFailedRepository.getByRequestId(requestId);
-            if(failedResult==null)
+            if(failedResult==null) {
                 throw new ThereIsNoSuchReportException();
-            else throw new RecognitionException(failedResult.getFailReason());
+            }
+            else{
+                throw new RecognitionException(failedResult.getFailReason());
+            }
         }
         return result;
     }
